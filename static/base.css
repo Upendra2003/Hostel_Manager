@@ -1,0 +1,43 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    /* line-height: 20px; */
+}
+
+.logo{
+    font-family: 'ABeeZee';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 38px;
+    color: #EF8509;
+}
+
+.sign-up{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.sign-up p{
+    font-family: 'ABeeZee';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    margin-right: 8px;
+    margin-top: 19px;
+}
+
+.btn{
+    background: linear-gradient(180deg, #EF5C09 0%, #FDC889 100%);
+    border-radius: 10px ;
+    padding: 10px 25px;
+    color: white;
+    font-size: 15px;
+    border: 2px solid white;
+    cursor: pointer;
+}
