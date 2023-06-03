@@ -3,11 +3,11 @@
     <link rel="stylesheet" href="../static/form.css">
     <div class="container">
         <div class="right">
-            <video src="../static/hostel.mp4">video</video>
+            <img src="../static/assets/hostel.png" alt="pic">
         </div>
         <div class="left">
             <h3><span>Hola!</span> Hostelers</h3>
-            <form action="" method="POST">
+            <form action="{{url_for('login')}}" method="POST">
                 <label>Email</label>
                 <input type="email" name="email" id="input">
                 <label>Password</label>
