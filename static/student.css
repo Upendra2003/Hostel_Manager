@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee&family=Anonymous+Pro:ital,wght@0,700;1,700&family=Merriweather+Sans&display=swap');
+
+*{
+    font-family: 'ABeeZee';
+}
+
+.heading{
+    margin: 10px;
+    padding: 10px;
+    font-weight: lighter;
+}
+
+.p{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.line{
+    height: 3px;
+    width: 97%;
+    text-align: center;
+    background-color: rgba(239, 93, 9, 0.5);
+    margin: auto;
+}
+
+.notice{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    border: 2px solid black;
+    width: 95%;
+    margin: auto;
+    padding: 0 10px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.btn{
+    padding: 10px 20px;
+    border-radius: 10px;
+    /* position: absolute; */
+    margin: 20px;
+    border: none;
+    background-color: rgba(239, 93, 9, 0.6);
+    position: sticky;
+    bottom: 0;
+    left: 90%;
+    border: 1px solid white;
+}
+
+.btn a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.post_notice{
+    display: flex;
+    border: 2px solid black;
+    width: 95%;
+    margin: auto;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.post-btn{
+    display: flex;
+    padding: 10px 60px;
+    border-radius: 10px;
+    margin: 20px auto;
+    border: none;
+    background-color: rgba(239, 93, 9, 0.3);
+    cursor: pointer;
+    text-align: center;
+}
+
+.post-btn a{
+    text-decoration: none;
+}
+
+.post-btn:hover{
+    background-color: rgba(239, 93, 9, 0.6);
+    color: white;
+}

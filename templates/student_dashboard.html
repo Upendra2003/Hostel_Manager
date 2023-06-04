@@ -1,0 +1,13 @@
+{% extends "navbar.html" %}
+{% block render %}
+    <link rel="stylesheet" href="../static/student.css">
+    <h1 class="heading">Hello, {{user_name}} !</h1>
+    <p class="heading p" >Dashboard</p>
+    <div class="line"></div>
+    {% for notice in get_notice %}
+        <div class="notice">
+            <p>{{notice.notice}}</p>
+            <p>{{ notice.date }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

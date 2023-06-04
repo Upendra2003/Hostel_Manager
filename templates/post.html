@@ -1,0 +1,11 @@
+{% extends "navbar.html" %}
+{% block render %}
+    <link rel="stylesheet" href="../static/student.css">
+    <h1 class="heading">Hello, {{user_name}} !</h1>
+    <p class="heading p" >Dashboard-Post Notice</p>
+    <div class="line"></div>
+    <form action="/post_notice/{{user_name}}" method="POST">
+        <input type="text" name="post_notice" class="post_notice">
+        <button class="post-btn"><a href="">+ Post</a></button>
+    </form>
+{% endblock %}
