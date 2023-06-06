@@ -1,0 +1,13 @@
+{% extends "admin_navbar.html" %}
+{% block render %}
+    <link rel="stylesheet" href="../static/student.css">
+    <p class="heading p" >Add Student</p>
+    <div class="line"></div>
+    <ul>
+        <li>Name : {{student.name}}</li>
+        <li>Student ID : {{student.student_id}}</li>
+        <li>Branch : {{student.branch}}</li>
+        <li>Email : {{student.email}}</li>
+        <li>Room No : {{student.room_no}}</li>
+    </ul>
+{% endblock %}

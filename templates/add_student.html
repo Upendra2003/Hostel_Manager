@@ -1,0 +1,14 @@
+{% extends "admin_navbar.html" %}
+{% block render %}
+    <link rel="stylesheet" href="../static/student.css">
+    <p class="heading p" >Add Student</p>
+    <div class="line"></div>
+    <form action="/find_student/add_student" method="POST">
+        <input class="post_notice" type="text" name="name" placeholder="Enter Student Name">
+        <input class="post_notice" type="text" name="student_id" placeholder="Enter Student ID">
+        <input class="post_notice" type="text" name="branch" placeholder="Enter Student Branch">
+        <input class="post_notice" type="email" name="email" placeholder="Enter Student Email">
+        <input class="post_notice" type="text" name="room_no" placeholder="Enter Student Room No">
+        <button class="post-btn">Add Student</button>
+    </form>
+{% endblock %}

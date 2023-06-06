@@ -1,0 +1,11 @@
+{% extends "admin_navbar.html" %}
+{% block render %}
+    <link rel="stylesheet" href="../static/student.css">
+    <p class="heading p" >Find Student</p>
+    <div class="line"></div>
+    <form action="/find_student" method="POST" class="search-form">
+        <input id="id-input" type="text" name="student_id" placeholder="Enter Student ID">
+        <button class="search-btn">Search</button>
+    </form>
+    <button class="btn"><a href="/find_student/add_student">Add Student</a></button>
+{% endblock %}

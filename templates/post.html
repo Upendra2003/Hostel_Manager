@@ -1,4 +1,4 @@
-{% extends "navbar.html" %}
+{% extends "admin_navbar.html" %}
 {% block render %}
     <link rel="stylesheet" href="../static/student.css">
     <h1 class="heading">Hello, {{user_name}} !</h1>
@@ -6,6 +6,6 @@
     <div class="line"></div>
     <form action="/post_notice/{{user_name}}" method="POST">
         <input type="text" name="post_notice" class="post_notice">
-        <button class="post-btn"><a href="">+ Post</a></button>
+        <button class="post-btn"><a href="/find_student/add_student">+ Post</a></button>
     </form>
 {% endblock %}

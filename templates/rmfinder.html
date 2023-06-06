@@ -1,0 +1,10 @@
+{% extends "student_navbar.html" %}
+{% block render %}
+    <link rel="stylesheet" href="../static/student.css">
+    <p class="heading p" >Find Student</p>
+    <div class="line"></div>
+    <form action="/rmfinder" method="POST" class="search-form">
+        <input id="id-input" type="text" name="student_id" placeholder="Enter Student ID">
+        <button class="search-btn">Find Roommate</button>
+    </form>
+{% endblock %}

@@ -83,3 +83,39 @@
     background-color: rgba(239, 93, 9, 0.6);
     color: white;
 }
+
+.search-form{
+    display: flex;
+    margin: 5px;
+    padding: 5px;
+    justify-content: space-around;
+
+}
+
+#id-input{
+    padding: 12px;
+    width: 80%;
+    margin: 5px auto;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin: 5px;
+}
+
+.search-btn{
+    margin: 5px;
+    /* padding: 5px; */
+    border-radius: 10px;
+    width: 20%;
+    cursor: pointer;
+    border: none;
+    background-color: rgba(239, 93, 9, 0.3);
+}
+
+.search-btn:hover{
+    background-color: rgba(239, 93, 9, 0.6);
+    color: white;
+}
+
+#add-student{
+    width: 100%;
+}

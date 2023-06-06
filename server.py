@@ -11,13 +11,14 @@ db=client['HSManager']
 collections=db['registrations']
 ad_collections=db['admin_reg']
 notice=db['notices']
+student_room=db['student_rooms']
 
 @app.route("/")
 def home():
     return render_template("login.html")
 
 @app.route("/<name>")
-def home_name(name):
+def admin_home(name):
     get_notice=notice.find()
     return render_template("admin_dashboard.html",user_name=name,get_notice=get_notice)
 
@@ -77,14 +78,37 @@ def post_notice(name):
         "date":str(current_date)
     }
     notice.insert_one(new_notice)
-    return redirect(url_for('home_name',name=name))
+    return redirect(url_for('admin_home',name=name))
 
 
+@app.route("/find_student",methods=['POST','GET'])
+def find_student():
+    if request.method=='POST':
+        get_id=request.form.get('student_id')
+        find_student=student_room.find_one({"student_id":get_id})
+        return render_template("admin_stud_details.html",student=find_student)
+    return render_template("find_student.html")
 
+@app.route("/rmfinder",methods=['POST','GET'])
+def rmfinder():
+    if request.method=='POST':
+        get_id=request.form.get('student_id')
+        find_student=student_room.find_one({"student_id":get_id})
+        return render_template("student_details.html",student=find_student)
+    return render_template("rmfinder.html")
 
-
-
-
+@app.route("/find_student/add_student",methods=['POST','GET'])
+def add_student():
+    if request.method=='POST':
+        new_student={
+            "name":request.form.get('name'),
+            "student_id":request.form.get('student_id'),
+            "branch":request.form.get('branch'),
+            "email":request.form.get('email'),
+            "room_no":request.form.get('room_no')
+        }
+        student_room.insert_one(new_student)
+    return render_template("add_student.html")
 
 
 
