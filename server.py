@@ -2,6 +2,7 @@ from flask import Flask,render_template,request,redirect,url_for
 import pymongo
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'aaec0770c47c1563dfb147b3bdb14072'
@@ -12,6 +13,7 @@ collections=db['registrations']
 ad_collections=db['admin_reg']
 notice=db['notices']
 student_room=db['student_rooms']
+complaint = db['complaints']
 
 @app.route("/")
 def home():
@@ -110,13 +112,28 @@ def add_student():
         student_room.insert_one(new_student)
     return render_template("add_student.html")
 
+@app.route("/student_complaints",methods=['POST','GET'])
+def student_complaints():
+    if request.method=='POST':
+        new_complaint={
+            "block":request.form.get('block'),
+            "complaint":request.form.get('complaint'),
+            "room_no":request.form.get('room_no'),
+            "student_id":request.form.get('student_id')
+        }
+        complaint.insert_one(new_complaint)
+    return render_template("student_complaints.html")
 
+@app.route("/admin_complaints")
+def admin_complaints():
+    complaints=complaint.find()
+    return render_template("admin_complaints.html",complaints=complaints)
 
-
-
-
-
-
+@app.route("/admin_complaints/completed/<complaint_id>",methods=['GET'])
+def admin_complaints_completed(complaint_id):
+    find_complaint=complaint.find_one({"_id":ObjectId(complaint_id)})
+    complaint.delete_one(find_complaint)
+    return redirect(url_for('admin_complaints'))
 
 
 

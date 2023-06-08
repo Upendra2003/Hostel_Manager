@@ -1,0 +1,15 @@
+{% extends "admin_navbar.html" %}
+{% block render %}
+    <link rel="stylesheet" href="../static/student.css">
+    <p class="heading p" >Complaints</p>
+    <div class="line"></div>
+    {% for complaint in complaints %}
+        <div class="notice">
+            <p>{{complaint.block}}</p>
+            <p>{{complaint.complaint}}</p>
+            <p>{{complaint.room_no}}</p>
+            <p>{{complaint.student_id}}</p>
+            <button class="completedbtn"><a href="/admin_complaints/completed/{{complaint._id}}">Completed</a></button>
+        </div>
+    {% endfor %}
+{% endblock %}

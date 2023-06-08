@@ -1,0 +1,13 @@
+{% extends "student_navbar.html" %}
+{% block render %}
+    <link rel="stylesheet" href="../static/student.css">
+    <p class="heading p" >Complaints</p>
+    <div class="line"></div>
+    <form action="{{url_for('student_complaints')}}" method="POST">
+        <input type="text" placeholder="Enter Block" name="block" class="post_notice">
+        <input type="text" placeholder="Enter Complaint" name="complaint" class="post_notice">
+        <input type="text" placeholder="Enter Room No" name="room_no" class="post_notice">
+        <input type="text" placeholder="Enter Student Id" name="student_id" class="post_notice">
+        <button class="btn">Register Complaint</button>
+    </form>
+{% endblock %}
