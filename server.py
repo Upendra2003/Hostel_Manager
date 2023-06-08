@@ -6,9 +6,9 @@ from bson.objectid import ObjectId
 import smtplib
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'aaec0770c47c1563dfb147b3bdb14072'
+app.config['SECRET_KEY'] = 'anysecretkey'
 
-client=pymongo.MongoClient('mongodb://localhost:27017')
+client=pymongo.MongoClient('database:link')
 db=client['HSManager']
 collections=db['registrations']
 ad_collections=db['admin_reg']
@@ -17,8 +17,8 @@ student_room=db['student_rooms']
 complaint = db['complaints']
 outpass=db['outpasses']
 
-admin_email='upendrakarimi2003@gmail.com'
-admin_password='pifjoiclablhyatw'
+admin_email='admin_mail_id@gmail.com'
+admin_password='admin_password'
 
 @app.route("/")
 def home():
@@ -163,7 +163,7 @@ def grant_outpass(id):
     find_outpass=outpass.find_one({"_id":ObjectId(id)})
     get_mail=find_outpass['student_id']+'@iiit-bh.ac.in'
     msg=f"\nYou are granted outpass.\nName of the student: {find_outpass['name']}\nStudent ID: {find_outpass['student_id']}\nBranch of the student: {find_outpass['branch']} \nPeriod of absence:{find_outpass['ped_of_absence']} \nReason for absence: {find_outpass['reason']}"
-    with smtplib.SMTP("smtp.gmail.com",port=587) as connection:
+    with smtplib.SMTP("smtp.gmail.com",port=587) as connection: #change the host and port according to the requirement.
         connection.starttls()
         connection.login(user=admin_email,password=admin_password)
         connection.sendmail(
