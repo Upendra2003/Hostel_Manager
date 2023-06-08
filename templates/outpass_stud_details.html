@@ -1,0 +1,14 @@
+{% extends "admin_navbar.html" %}
+{% block render %}
+    <link rel="stylesheet" href="../static/student.css">
+    <p class="heading p" >Outpass</p>
+    <div class="line"></div>
+        <ul>
+            <li>Name : {{details.name}}</li>
+            <li>Student ID : {{details.student_id}}</li>
+            <li>Branch : {{details.branch}}</li>
+            <li>Reason : {{details.reason}}</li>
+            <li>Room No : {{details.ped_of_absence}}</li>
+        </ul>
+{% endblock %}
+

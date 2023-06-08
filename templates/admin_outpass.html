@@ -1,0 +1,15 @@
+{% extends "admin_navbar.html" %}
+{% block render %}
+    <link rel="stylesheet" href="../static/student.css">
+    <p class="heading p" >Outpass</p>
+    <div class="line"></div>
+    {% for outpass in outpasses %}
+        <div class="notice">
+            <p>{{outpass.student_id}}</p>
+            <p>{{outpass.reason}}</p>
+            <p>{{outpass.ped_of_absence}}</p>
+            <button class="completedbtn"><a href="view_more/{{outpass._id}}">View More</a></button>
+            <button class="completedbtn"><a href="/admin_outpass/grant_outpass/{{outpass._id}}">Grant</a></button>
+        </div>
+    {% endfor %}
+{% endblock %}

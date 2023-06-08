@@ -1,0 +1,14 @@
+{% extends "student_navbar.html" %}
+{% block render %}
+    <link rel="stylesheet" href="../static/student.css">
+    <p class="heading p" >Outpass</p>
+    <div class="line"></div>
+    <form action="{{url_for('student_outpass')}}" method="POST">
+        <input type="text" placeholder="Enter Student ID" name="student_id" class="post_notice">
+        <input type="text" placeholder="Enter Name" name="name" class="post_notice">
+        <input type="text" placeholder="Enter Branch" name="branch" class="post_notice">
+        <input type="text" placeholder="Enter Reason" name="reason" class="post_notice">
+        <input type="text" placeholder="Enter Period of absence" name="ped_of_absence" class="post_notice">
+        <button class="btn">Send Details</button>
+    </form>
+{% endblock %}

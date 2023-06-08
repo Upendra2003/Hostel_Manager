@@ -3,6 +3,7 @@ import pymongo
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 from bson.objectid import ObjectId
+import smtplib
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'aaec0770c47c1563dfb147b3bdb14072'
@@ -14,6 +15,10 @@ ad_collections=db['admin_reg']
 notice=db['notices']
 student_room=db['student_rooms']
 complaint = db['complaints']
+outpass=db['outpasses']
+
+admin_email='upendrakarimi2003@gmail.com'
+admin_password='pifjoiclablhyatw'
 
 @app.route("/")
 def home():
@@ -79,6 +84,7 @@ def post_notice(name):
         "notice":request.form.get('post_notice'),
         "date":str(current_date)
     }
+    print(new_notice)
     notice.insert_one(new_notice)
     return redirect(url_for('admin_home',name=name))
 
@@ -135,12 +141,43 @@ def admin_complaints_completed(complaint_id):
     complaint.delete_one(find_complaint)
     return redirect(url_for('admin_complaints'))
 
+@app.route("/student_outpass",methods=['POST','GET'])
+def student_outpass():
+    new_outpass={
+        "student_id":request.form.get('student_id'),
+        "name":request.form.get('name'),
+        "branch":request.form.get('branch'),
+        "reason":request.form.get('reason'),
+        "ped_of_absence":request.form.get('ped_of_absence')
+    }
+    outpass.insert_one(new_outpass)
+    return render_template("student_outpass.html")
 
+@app.route("/admin_outpass")
+def admin_outpass():
+    outpasses=outpass.find()
+    return render_template("admin_outpass.html",outpasses=outpasses)
 
+@app.route("/admin_outpass/grant_outpass/<id>")
+def grant_outpass(id):
+    find_outpass=outpass.find_one({"_id":ObjectId(id)})
+    get_mail=find_outpass['student_id']+'@iiit-bh.ac.in'
+    msg=f"\nYou are granted outpass.\nName of the student: {find_outpass['name']}\nStudent ID: {find_outpass['student_id']}\nBranch of the student: {find_outpass['branch']} \nPeriod of absence:{find_outpass['ped_of_absence']} \nReason for absence: {find_outpass['reason']}"
+    with smtplib.SMTP("smtp.gmail.com",port=587) as connection:
+        connection.starttls()
+        connection.login(user=admin_email,password=admin_password)
+        connection.sendmail(
+            from_addr=admin_email,
+            to_addrs=get_mail,
+            msg=f"subject:Outpass granted \n\n {msg}"
+        )
+    outpass.delete_one(find_outpass)
+    return redirect(url_for('admin_outpass'))
 
-
-
-
+@app.route("/view_more/<id>")
+def view_outpass_stud_details(id):
+    find_outpass=outpass.find_one({"_id":ObjectId(id)})
+    return render_template("outpass_stud_details.html",details=find_outpass)
 
 if __name__=="__main__":
     app.run(debug=True)
